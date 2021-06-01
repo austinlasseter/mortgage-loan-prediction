@@ -34,7 +34,7 @@ Source 2: [Kaggle](https://www.kaggle.com/burak3ergun/loan-data-set)
 
 ## Additional Examples:
 * [K-Nearest Neighbors with Iris Dataset](https://knn-iris-classifier.herokuapp.com/)
-* Classification with Titanic Dataset
+* [Classification with Titanic Dataset](https://titanic-classifier-2021.herokuapp.com)
 * Predicting home values in Washington, DC
 * [NLP with Movie Plots](https://tmdb-rf-genres.herokuapp.com/)
 * [NLP with Medical Transcripts](https://pages.git.generalassemb.ly/sage-data-science-01/523-medical-transcripts-lda/)
