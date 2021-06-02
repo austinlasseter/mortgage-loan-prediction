@@ -56,7 +56,6 @@ features = ['Credit_History',
 # Create a function that can take any 8 valid inputs & make a prediction
 def make_predictions(listofargs, Threshold):
     try:
-        df='hello'
         # the order of the arguments must match the order of the features
         df = pd.DataFrame(columns=features)
         df.loc[0] = listofargs
@@ -87,7 +86,7 @@ def make_predictions(listofargs, Threshold):
 
         # drop & rearrange the columns in the order expected by your trained model!
         df=df[['Gender', 'Education', 'Self_Employed', 'Credit_History',
-           'Property_Area_Semiurban', 'Property_Area_Urban', 'ln_monthly_return',
+           'Property_Area_Semiurban', 'Property_Area_Urban', 'Property_Area_Rural', 'ln_monthly_return',
            'ln_total_income', 'ln_LoanAmount']]
 
         prob = rf.predict_proba(df)
@@ -119,14 +118,14 @@ app.layout = html.Div(children=[
                 html.H3("Features"),
                 html.Div('Credit History'),
                 dcc.Input(id='Credit_History', value=1, type='number', min=0, max=1, step=1),
-                html.Div('Loan Amount'),
-                dcc.Input(id='LoanAmount', value=150, type='number', min=10, max=800, step=10),
-                html.Div('Term (in months)'),
-                dcc.Input(id='Loan_Amount_Term', value=360, type='number', min=120, max=480, step=10),
-                html.Div('Applicant Income'),
-                dcc.Input(id='ApplicantIncome', value=5500, type='number', min=0, max=80000, step=100),
-                html.Div('Co-Applicant Income'),
-                dcc.Input(id='CoapplicantIncome', value=2500, type='number', min=0, max=80000, step=100),
+                html.Div('Loan Amount (thousands)'),
+                dcc.Input(id='LoanAmount', value=100, type='number', min=10, max=250, step=10),
+                html.Div('Term (months)'),
+                dcc.Input(id='Loan_Amount_Term', value=360, type='number', min=120, max=480, step=50),
+                html.Div('Applicant Monthly Income'),
+                dcc.Input(id='ApplicantIncome', value=5500, type='number', min=0, max=6000, step=50),
+                html.Div('Co-Applicant Monthly Income'),
+                dcc.Input(id='CoapplicantIncome', value=2500, type='number', min=0, max=6000, step=10),
                 html.Div('Property Area'),
                 dcc.Dropdown(id='Property_Area',
                     options=[{'label': i, 'value': i} for i in ['Semiurban','Urban','Rural']],
@@ -284,26 +283,6 @@ def make_loans_cube(*args):
                     ))
     fig=go.Figure([trace0, trace1, trace2], layout)
     return fig
-
-    # trace0=go.Scatter3d(
-    #     x=[7,4,7],
-    #     y=[6,2,1],
-    #     z=[5,9,3],
-    #     name='new data',
-    #     mode='markers',
-    #     hoverinfo='text',
-    #     marker=dict(size=15, color='blue'))
-    #
-    # layout = go.Layout(title=str(denied.shape),
-    #                     showlegend=True,
-    #                         scene = dict(
-    #                         xaxis=dict(title='Loan Amount'),
-    #                         yaxis=dict(title='Combined Income'),
-    #                         zaxis=dict(title='Term')
-    #                 ))
-    # fig=go.Figure([trace0], layout)
-    # return fig
-
 
 
 ############ Deploy
